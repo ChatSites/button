@@ -1,10 +1,11 @@
-import { join, dirname, resolve } from "path";
-import { fileURLToPath } from "url";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const path = fileURLToPath(import.meta.url);
-
-export default {
-  root: join(dirname(path), "client"),
+export default defineConfig({
   plugins: [react()],
-};
+  server: {
+    port: process.env.PORT || 5173,
+    host: true // 👈 Required for Render to expose the server
+  }
+});
+
